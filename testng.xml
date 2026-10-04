@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SauceDemo UI Automation" parallel="false">
+    <listeners>
+        <listener class-name="com.saucedemo.automation.base.DriverLifecycleListener"/>
+    </listeners>
+    <test name="SauceDemo regression tests">
+        <classes>
+            <class name="com.saucedemo.automation.tests.login.LoginTests"/>
+            <class name="com.saucedemo.automation.tests.products.ProductsTests"/>
+            <class name="com.saucedemo.automation.tests.cart.CartTests"/>
+            <class name="com.saucedemo.automation.tests.checkout.CheckoutTests"/>
+            <class name="com.saucedemo.automation.tests.logout.LogoutTests"/>
+        </classes>
+    </test>
+</suite>

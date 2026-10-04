@@ -14,3 +14,26 @@ public class LogoutTests extends BaseTest {
 
     }
 }
+//--Playwrite
+package login;
+
+import base.BaseTest;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class LogoutTests extends BaseTest {
+
+    @Test
+    public void testSuccessfulLogOut() {
+
+        login();
+
+        homePage.logout();
+
+        Assert.assertEquals(
+                homePage.logOutAssertionText(),
+                "Account"
+        );
+    }
+}
+`

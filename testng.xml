@@ -1,133 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-    <listeners>
-        <listener class-name="listeners.Listeners"/>
-    </listeners>>
-    <test name="Jumia Tests">
-    <parameter name="BrowserName" value="edge"></parameter>
-        <classes>
-            <class name="register.RegisterTests">
-                <methods>
-                    <include name="testInvalidEmail"/>
-                    <include name="testEmptyEmail"/>
-                    <include name="testShortPasswordRegistration"/>
-                    <include name="testUnMatchedPasswords"/>
-                    <include name="testShortFNameRegistration"/>
-                    <include name="testingInvalidNames"/>
-                    <include name="testInvalidPhoneRegistration"/>
-                    <include name="successfulRegistration"/>
-                </methods>
-            </class>
-            <class name="login.LoginTests">
-                <methods>
-                    <include name="testWrongPasswordLogin"/>
-                    <include name="testSuccessfulLogin"/>
-                </methods>
-            </class>
-            <class name="login.LogoutTests">
-                <methods>
-                    <include name="testSuccessfulLogOut"/>
-                </methods>
-            </class>
-            <class name="search.SearchTests">
-                <methods>
-                    <include name="testingRelevantSearchResults"/>
-                </methods>
-            </class>
-            <class name="savedItems.WishListTests">
-                <methods>
-                    <include name="testingAddingItemsToWishList"/>
-                    <include name="testingRemovingItemsFromWishList"/>
-                </methods>
-            </class>
-            <class name="E2E.BuyingAProductE2E">
-                <methods>
-                    <include name="testEmptyAddressCheckOut"/>
-                    <include name="testEmptyCityCheckOut"/>
-                    <include name="testSuccessfulCheckout"/>
-                </methods>
-            </class>
-            <class name="cart.CartTests">
-                <methods>
-                    <include name="testProductInCart"/>
-                    <include name="testDeletingProductFromCart"/>
-                </methods>
-            </class>
-            <class name="homePage.ChangingLanguageTest">
-                <methods>
-                    <include name="changeLanguageToArabic"/>
-                </methods>
-            </class>
-            <class name="homePage.NewsLetterEmail">
-                <methods>
-                    <include name="testEnteringEmailForNews"/>
-                    <include name="testEnteringAlreadySentEmailForNews"/>
-                </methods>
-            </class>
-            <class name="E2E.BuyingMultipleProductsTest">
-                <methods>
-                    <include name="purchaseMultipleProductsE2E"/>
-                </methods>
-            </class>
-            <class name="fail.TestToFail">
-                <methods>
-                    <include name="changeLanguageToArabicFailing"/>
-                </methods>
-            </class>
-            <class name="closeAccount.ClosingAccount">
-                <methods>
-                    <include name="closingAccount"/>
-                </methods>
-            </class>
-
-        </classes>
-    </test>
-</suite>
-
-//-Playwrite
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-
-<suite name="Playwright Suite" parallel="methods" thread-count="3">
-
-    <listeners>
-        <listener class-name="listeners.Listeners"/>
-    </listeners>
-
-    <test name="Jumia Tests">
-
-        <parameter name="BrowserName" value="chromium"/>
-
+<suite name="Jumia Hybrid Suite" parallel="false">
+    <test name="Regression Tests">
+        <parameter name="browserName" value="chrome"/>
         <classes>
-
-            <class name="register.RegisterTests"/>
-
-            <class name="login.LoginTests"/>
-
-            <class name="login.LogoutTests"/>
-
-            <class name="search.SearchTests"/>
-
-            <class name="savedItems.WishListTests"/>
-
-            <class name="E2E.BuyingAProductE2E"/>
-
-            <class name="cart.CartTests"/>
-
-            <class name="homePage.ChangingLanguageTest"/>
-
-            <class name="homePage.NewsLetterEmail"/>
-
-            <class name="E2E.BuyingMultipleProductsTest"/>
-
-            <class name="fail.TestToFail"/>
-
-            <class name="closeAccount.ClosingAccount"/>
-
+            <class name="com.yourcompany.tests.login.LoginTests"/>
+            <class name="com.yourcompany.tests.cart.CartTests"/>
+            <class name="com.yourcompany.tests.search.SearchTests"/>
+            <class name="com.yourcompany.tests.register.RegisterTests"/>
+            <class name="com.yourcompany.tests.logout.LogoutTests"/>
         </classes>
-
     </test>
-
-</suite>
 </suite>

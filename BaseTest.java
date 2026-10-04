@@ -93,3 +93,124 @@ public class BaseTest {
 
 
 }
+package base;
+ 
+import com.microsoft.playwright.*;
+import org.testng.Assert;
+import org.testng.annotations.*;
+ 
+import pages.AuthenticationPage;
+import pages.HomePage;
+ 
+public class BaseTest {
+ 
+protected Playwright playwright;
+protected Browser browser;
+protected BrowserContext context;
+protected Page page;
+ 
+protected HomePage homePage;
+ 
+@Parameters("BrowserName")
+@BeforeMethod
+public void setUp(@Optional("chromium") String browserName) {
+ 
+playwright = Playwright.create();
+ 
+BrowserType browserType;
+ 
+switch (browserName.toLowerCase()) {
+case "firefox":
+browserType = playwright.firefox();
+break;
+ 
+case "webkit":
+browserType = playwright.webkit();
+break;
+ 
+case "chromium":
+case "chrome":
+case "edge":
+default:
+browserType = playwright.chromium();
+break;
+}
+ 
+browser = browserType.launch(
+new BrowserType.LaunchOptions()
+.setHeadless(false)
+);
+ 
+context = browser.newContext(
+new Browser.NewContextOptions()
+.setViewportSize(1920, 1080)
+);
+ 
+page = context.newPage();
+ 
+page.navigate("https://www.jumia.com.eg");
+ 
+homePage = new HomePage(page);
+}
+ 
+@AfterMethod
+public void tearDown() {
+ 
+if (context != null) {
+context.close();
+}
+ 
+if (browser != null) {
+browser.close();
+}
+ 
+if (playwright != null) {
+playwright.close();
+}
+}
+ 
+/********************* LOGIN **************************/
+ 
+public void login() {
+ 
+homePage.closePopUp();
+ 
+AuthenticationPage authenticationPage =
+homePage.goToSignInPage();
+ 
+authenticationPage.enterEmail("dfb66c5098a4@drmail.in");
+ 
+SignInPage signInPage =
+authenticationPage.continueSigningIn();
+ 
+signInPage.enterPassword("gETZKvbhZ9m#Tpa");
+ 
+signInPage.completeSigningIn();
+ 
+Assert.assertTrue(
+homePage.getAssertionText().contains("Hi, ")
+);
+}
+ 
+/********************* DATAPROVIDERS **************************/
+ 
+@DataProvider
+public Object[][] getData() {
+ 
+return new Object[][]{
+{"12345", "12345"},
+{"#$@#!", "#$@#!"}
+};
+}
+ 
+@DataProvider(name = "search")
+public Object[][] searchField() {
+ 
+return new Object[][]{
+{"jeans"},
+{"table"},
+{"watch"},
+{"كتاب"}
+};
+}
+}

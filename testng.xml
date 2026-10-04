@@ -87,37 +87,47 @@
 
 //-Playwrite
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Jumia Playwright Suite"
-       parallel="tests"
-       thread-count="3">
+<suite name="Playwright Suite" parallel="methods" thread-count="3">
 
     <listeners>
         <listener class-name="listeners.Listeners"/>
     </listeners>
 
-    <test name="Chromium">
+    <test name="Jumia Tests">
+
         <parameter name="BrowserName" value="chromium"/>
 
-        <packages>
-            <package name="login"/>
-            <package name="cart"/>
-            <package name="search"/>
-            <package name="register"/>
-        </packages>
+        <classes>
+
+            <class name="register.RegisterTests"/>
+
+            <class name="login.LoginTests"/>
+
+            <class name="login.LogoutTests"/>
+
+            <class name="search.SearchTests"/>
+
+            <class name="savedItems.WishListTests"/>
+
+            <class name="E2E.BuyingAProductE2E"/>
+
+            <class name="cart.CartTests"/>
+
+            <class name="homePage.ChangingLanguageTest"/>
+
+            <class name="homePage.NewsLetterEmail"/>
+
+            <class name="E2E.BuyingMultipleProductsTest"/>
+
+            <class name="fail.TestToFail"/>
+
+            <class name="closeAccount.ClosingAccount"/>
+
+        </classes>
+
     </test>
 
-    <test name="Firefox">
-        <parameter name="BrowserName" value="firefox"/>
-
-        <packages>
-            <package name="login"/>
-            <package name="cart"/>
-            <package name="search"/>
-            <package name="register"/>
-        </packages>
-    </test>
-
+</suite>
 </suite>

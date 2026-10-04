@@ -43,3 +43,63 @@ public class BasePage {
     }
 
 }
+
+
+//---Playwrite
+package pages;
+ 
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
+ 
+public class BasePage {
+ 
+protected Page page;
+ 
+public BasePage(Page page) {
+this.page = page;
+}
+ 
+/**** Common Methods Used in Test Pages ****/
+ 
+protected Locator find(String locator) {
+return page.locator(locator);
+}
+ 
+protected void click(String locator) {
+find(locator).click();
+}
+ 
+protected String getText(String locator) {
+return find(locator).textContent();
+}
+ 
+protected void fill(String locator, String text) {
+find(locator).fill(text);
+}
+ 
+protected void waitForElementVisible(String locator) {
+find(locator).waitFor();
+}
+ 
+protected void waitForElementVisible(String locator, int timeoutMillis) {
+find(locator).waitFor(
+new Locator.WaitForOptions().setTimeout(timeoutMillis)
+);
+}
+ 
+protected void waitForElementHidden(String locator, int timeoutMillis) {
+find(locator).waitFor(
+new Locator.WaitForOptions()
+.setState(com.microsoft.playwright.options.WaitForSelectorState.HIDDEN)
+.setTimeout(timeoutMillis)
+);
+}
+ 
+protected boolean isVisible(String locator) {
+return find(locator).isVisible();
+}
+ 
+protected boolean isEnabled(String locator) {
+return find(locator).isEnabled();
+}
+}

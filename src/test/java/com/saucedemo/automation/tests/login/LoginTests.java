@@ -9,12 +9,13 @@ import org.testng.annotations.Test;
 
 public class LoginTests {
     @Test
+
     public void validUserCanLogIn() {
         ProductsPage productsPage = new LoginPage(DriverContext.getDriver())
                 .loginSuccessfully(DemoUsers.STANDARD_USERNAME, DemoUsers.PASSWORD);
 
         Assert.assertEquals(DriverContext.getDriver().getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
-        Assert.assertTrue(productsPage.getProductPrices().size() > 0, "The inventory should be displayed.");
+        Assert.assertFalse(productsPage.getProductPrices().isEmpty(), "The inventory should be displayed.");
     }
 
     @Test
